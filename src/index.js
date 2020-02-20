@@ -1,7 +1,7 @@
 import "./styles.css";
 import PNotify from "../node_modules/pnotify/dist/es/PNotify.js";
 import PNotifyButtons from "../node_modules/pnotify/dist/es/PNotifyButtons.js";
-import * as _ from "lodash";
+import {debounce} from "lodash";
 // import PNotifyStyleMaterial from '../node_modules/pnotify/dist/es/PNotifyStyleMaterial.js';
 import oneCountry from "./tamplates/oneCountryTamplate.hbs";
 import someCountries from "./tamplates/someCountriesTamplate.hbs";
