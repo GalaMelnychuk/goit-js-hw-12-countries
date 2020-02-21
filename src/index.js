@@ -7,6 +7,7 @@ import oneCountry from "./tamplates/oneCountryTamplate.hbs";
 import someCountries from "./tamplates/someCountriesTamplate.hbs";
 import fetchCountries from "./fetchCountries.js";
 import "../node_modules/pnotify/dist/PNotifyBrightTheme.css";
+PNotify.defaults.delay = 900;
 
 const refs = {
   input: document.querySelector("#input-id"),
@@ -19,6 +20,7 @@ refs.input.addEventListener("input", _.debounce(handlerInputSearchQuery, 500));
 
 function handlerInputSearchQuery(event) {
   fetchCountries(event.target.value, renderCountriesList);
+  clearInput();
 }
 
 //функция, которая отрисовывает результат в ДОМ
@@ -34,6 +36,7 @@ function renderCountriesList(data) {
   }
   //если несколько стран, но меньше десяти
   else if (data.length > 1 && data.length <= 10) {
+    PNotify.closeAll()
     const markupSomeCounties = data.reduce(
       (acc, country) => acc + someCountries(country),
       ""
@@ -42,11 +45,13 @@ function renderCountriesList(data) {
   }
   // если несколько стран, но меньше десяти
   else if (data.length > 10) {
+    PNotify.closeAll()
     PNotify.error({
       text: "Too many matches found. Please enter a more specific query!",
       type: "error"
     });
   } else {
+    PNotify.closeAll()
     PNotify.error({
       text: "Please, enter correct country!",
       type: "error"
