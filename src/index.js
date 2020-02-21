@@ -26,7 +26,6 @@ function handlerInputSearchQuery(event) {
 //функция, которая отрисовывает результат в ДОМ
 function renderCountriesList(data) {
   //если одна страна
-  clearInput();
   if (data.length === 1) {
     const markupOneCountry = data.reduce(
       (acc, country) => acc + oneCountry(country),
